@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ReserveP{% endblock %}
+
+{% block body %}
+    <h1>Create new ReserveP</h1>
+
+    {{ include('reserve_p/_form.html.twig') }}
+
+    <a href="{{ path('reserve_p_index') }}">back to list</a>
+{% endblock %}

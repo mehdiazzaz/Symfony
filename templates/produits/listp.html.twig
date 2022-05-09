@@ -1,0 +1,53 @@
+
+
+
+{% block body %}
+
+
+
+
+        <table class="table" class="table" style="border: medium solid #000000">
+            <thead>
+            <tr>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Id</th>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Nom</th>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Prix</th>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Quantite</th>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Categories</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for produit in produits %}
+                <tr>
+                    <td>{{ produit.id }}</td>
+                    <td>{{ produit.nom }}</td>
+                    <td>{{ produit.prix }}</td>
+                    <td>{{ produit.quantite }}</td>
+                    <td>{{ produit.getNomCat.getNom() }}</td>
+
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

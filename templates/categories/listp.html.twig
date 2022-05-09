@@ -1,0 +1,44 @@
+
+
+
+{% block body %}
+
+
+
+
+
+    <table class="table" style="border: medium solid #000000">
+        <thead>
+        <tr>
+            <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Id</th>
+            <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Nom</th>
+            <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Type</th>
+            <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Description</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tbody  id="myTable">
+        {% for category in categories %}
+            <tr>
+                <td >{{ category.id }}</td>
+                <td >{{ category.nom }}</td>
+                <td >{{ category.type }}</td>
+                <td >{{ category.description }}</td>
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+
+
+
+
+{% endblock %}

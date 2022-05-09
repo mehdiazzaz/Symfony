@@ -1,0 +1,51 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+<table>
+    <tr>
+        <th style="color:#98b6b4">Nom:</th>
+        <td> {{ form_widget(form.nom,{'attr':{'class':'form-control','placeholder':'Nom    '}}) }} </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            {% if not form.nom.vars.valid %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.nom) }}
+                </div>
+            {% endif %}
+        </td>
+    </tr>
+
+    <tr>
+        <th style="color:#98b6b4">type:</th>
+        <td>{{ form_widget(form.type,{'attr':{'class':'form-control','placeholder':'type'}}) }} </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>   {% if not form.type.vars.valid %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.type) }}
+                </div>
+
+            {% endif %} </td>
+    </tr>
+
+
+
+    <th style="color:#98b6b4">description:</th>
+
+    <td>  {{ form_widget(form.description,{'attr':{'class':'form-control','placeholder':'description    '}}) }} </td>
+
+    </tr>
+    <tr>
+        <td></td>
+        <td>  {{ form_errors(form.description) }} </td>
+    </tr>
+    <tr>
+
+
+
+        {#<button class="btn"> {{ button_label|default('Envoyer') }}</button>#}
+</table>
+<button type="btn" class="btn btn-primary"> {{ button_label|default('Envoyer') }}</button>
+<br>
+{{ form_end(form) }}

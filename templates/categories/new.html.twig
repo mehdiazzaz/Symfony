@@ -1,0 +1,12 @@
+{% extends 'base.back.html.twig' %}
+
+{% block title %}New Categories{% endblock %}
+
+{% block body %}
+    <h1 style="color: #d5606e">Create new Categories</h1>
+
+    {{ include('categories/_form.html.twig') }}
+    <br>
+
+    <a class="btn btn-primary" href="{{ path('categories_index') }}">Back to list</a>
+{% endblock %}

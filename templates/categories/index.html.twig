@@ -1,0 +1,70 @@
+{% extends 'base.back.html.twig' %}
+{% block title %}Categories {% endblock %}
+
+{% block body %}
+
+
+    <a href="{{path('TrierParNom')}} " class="btn btn-success btn-sm"  href="https://startbootstrap.com/theme/sb-admin-pro"><i class="align-middle" ></i>Trier par Prix</a>
+    <a class="btn btn-primary"  href="{{ path('categories_listp') }}">PDF</a>
+    <button  class="btn btn-info mr-2" onclick="window.print()" ><i class="fa fa-print" aria-hidden="true"></i></i>  Imprimer</button>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+            </div>
+            <p style="margin-left: 950px">  <input type="text" id="myInput" class="form-control" placeholder="Chercher un produit">
+        </div>
+    </div>
+    <h1> Table des Categories </h1>
+
+    <table class="table" style="border: medium solid #000000">
+        <thead>
+            <tr>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Id</th>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Nom</th>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Type</th>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Description</th>
+                <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tbody  id="myTable">
+        {% for category in categories %}
+            <tr>
+                <td >{{ category.id }}</td>
+                <td >{{ category.nom }}</td>
+                <td >{{ category.type }}</td>
+                <td >{{ category.description }}</td>
+
+                <td>
+                    <a class="btn btn-info mr-2" href="{{ path('categories_show', {'id': category.id}) }}">show</a>
+                    <a class="btn btn-info mr-2" href="{{ path('categories_edit', {'id': category.id}) }}">edit</a>
+                    <a class="btn btn-info mr-2" href="{{ path('categories_delete', {'id': category.id}) }}">delete</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <a class="btn btn-primary" href="{{ path('categories_new') }}">Create new</a>
+    <div style="margin-left: 25%">
+        {{ knp_pagination_render(categories,'categories/pagination.html.twig') }}
+    </div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.back.html.twig' %}
+
+{% block title %}Produits {% endblock %}
+{% block body %}
+
+    <a href="{{path('TrierParNom')}} " class="btn btn-success btn-sm"  href="https://startbootstrap.com/theme/sb-admin-pro"><i class="align-middle" ></i>Trier par Prix</a>
+    <a class="btn btn-primary"  href="{{ path('produits_listp') }}">PDF</a>
+<button  class="btn btn-info mr-2" onclick="window.print()" ><i class="fa fa-print" aria-hidden="true"></i></i>  Imprimer</button>
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+            </div>
+            <p style="margin-left: 950px">  <input type="text" id="myInput" class="form-control" placeholder="Chercher un produit">
+        </div>
+    </div>
+        <table class="table" class="table" style="border: medium solid #000000">
+            <thead>
+                <tr>
+                    <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Id</th>
+                    <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Nom</th>
+                    <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Prix</th>
+                    <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Quantite</th>
+                    <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">Categories</th>
+                    <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">photo</th>
+                    <th style="border: thin solid #6495ed" width="5%" bgcolor="#c4c2ff">actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for produit in produits %}
+                <tr>
+                    <td>{{ produit.id }}</td>
+                    <td>{{ produit.nom }}</td>
+                    <td>{{ produit.prix }}</td>
+                    <td>{{ produit.quantite }}</td>
+                    <td>{{ produit.getNomCat.getNom() }}</td>
+                    <td><img style="width: 150px;" src="/uploads/{{ produit.photo }}"></td>
+                    <td>
+                        <a class="btn btn-info mr-2" href="{{ path('produits_show', {'id': produit.id}) }}">show</a>
+                        <a class="btn btn-info mr-2" href="{{ path('produits_edit', {'id': produit.id}) }}">edit</a>
+                        <a class="btn btn-info mr-2" href="{{ path('produits_delete', {'id': produit.id}) }}">delete</a>
+
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+        <a class="btn btn-primary" href="{{ path('produits_new') }}">Create new</a>
+
+{#{% endblock %}#}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+<div style="margin-left: 25%">
+{{ knp_pagination_render(produits,'produits/pagination.html.twig') }}
+</div>
+{% block b1 %}
+
+
+{% endblock %}
+{#{% block prix %}#}
+
+
+{% endblock %}
+{#{% block Produit %}#}
+{#    <h1>Produits index</h1>#}
+
+{#    <table class="table">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Id</th>#}
+{#                <th>Nom</th>#}
+{#                <th>Prix</th>#}
+{#                <th>Quantite</th>#}
+{#                <th>actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#        {% for produit in produits %}#}
+{#            <tr>#}
+{#                <td>{{ produit.id }}</td>#}
+{#                <td>{{ produit.nom }}</td>#}
+{#                <td>{{ produit.prix }}</td>#}
+{#                <td>{{ produit.quantite }}</td>#}
+{#                <td>{{ produit.categories }}</td>#}
+{#                <td>#}
+{#                    <a href="{{ path('produits_show', {'id': produit.id}) }}">show</a>#}
+{#                    <a href="{{ path('produits_edit', {'id': produit.id}) }}">edit</a>#}
+{#                </td>#}
+{#            </tr>#}
+{#        {% else %}#}
+{#            <tr>#}
+{#                <td colspan="5">no records found</td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#        </tbody>#}
+{#    </table>#}
+
+{#    <a href="{{ path('produits_new') }}">Create new</a>#}
+{#{% endblock %}#}

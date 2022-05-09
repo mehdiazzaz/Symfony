@@ -1,0 +1,59 @@
+{% extends 'base.frontProduit.html.twig' %}
+
+{% block title %}Hello CartController!
+{% endblock %}
+
+{% block Produit %}
+    <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </div>
+
+    {% if items| length >0 %}
+        <table class="table">
+       <thead>
+     <tr>
+         <th>Produit</th>
+         <th>Prix</th>
+         <th>Quantity</th>
+         <th>Total</th>
+         <th></th>
+     </tr>
+
+       </thead>
+            <tbody>
+
+            {% for item in items %}
+                <tr>
+                    <th>{{ item.produit.nom }}</th>
+                    <th>{{ item.produit.prix }}</th>
+                    <th>{{ item.quantite }}</th>
+                    <th>{{ item.produit.prix * item.quantite }}</th>
+                    <th>
+                        <a class="btn btn-danger btn-sm" href="{{ path('cart_remove' , {'id': item.produit.id }) }}" > Supprimer  </a>
+
+
+                    </th>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <th  colspan="3" class="text-right"> Total :</th>
+                <th>{{ total }}</th>
+                <th></th>
+
+            </tr>
+
+            </tfoot>
+        </table>
+        <a class="btn btn-info mr-2" style="margin-left:  50%" href="{{ path('produits_index2'  )}} " >Produits</a>
+        <a class="btn btn-info mr-2" style="margin-left: 0%" href="{{ path('cart_index2')}} " >commander</a>
+
+    {% else %}
+        <p>Surprise, c'est vide !</p>
+    {% endif %}
+
+
+{% endblock %}
+

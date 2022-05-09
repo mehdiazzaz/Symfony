@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReserveP index{% endblock %}
+
+{% block body %}
+    <h1>ReserveP index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reserve_p in reserve_ps %}
+            <tr>
+                <td>{{ reserve_p.id }}</td>
+                <td>{{ reserve_p.Nom }}</td>
+                <td>{{ reserve_p.Date ? reserve_p.Date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('reserve_p_show', {'id': reserve_p.id}) }}">show</a>
+                    <a href="{{ path('reserve_p_edit', {'id': reserve_p.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reserve_p_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReserveP{% endblock %}
+
+{% block body %}
+    <h1>ReserveP</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reserve_p.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ reserve_p.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ reserve_p.Date ? reserve_p.Date|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('reserve_p_index') }}">back to list</a>
+
+    <a href="{{ path('reserve_p_edit', {'id': reserve_p.id}) }}">edit</a>
+
+    {{ include('reserve_p/_delete_form.html.twig') }}
+{% endblock %}

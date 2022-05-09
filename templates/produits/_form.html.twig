@@ -1,0 +1,89 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+<table>
+    <tr>
+        <th style="color:#98b6b4">Nom:</th>
+        <td> {{ form_widget(form.nom,{'attr':{'class':'form-control','placeholder':'Nom    '}}) }} </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            {% if not form.nom.vars.valid %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.nom) }}
+                </div>
+            {% endif %}
+        </td>
+    </tr>
+
+    <tr>
+        <th style="color:#98b6b4">Prix:</th>
+        <td>{{ form_widget(form.prix,{'attr':{'class':'form-control','placeholder':'Prix    '}}) }} </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>   {% if not form.prix.vars.valid %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.prix) }}
+                </div>
+
+            {% endif %} </td>
+    </tr>
+
+
+
+
+    <tr>
+        <th style="color:#98b6b4">Quantite:</th>
+        <td>{{ form_widget(form.quantite,{'attr':{'class':'form-control','placeholder':'Quantite    '}}) }} </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>   {% if not form.quantite.vars.valid %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.quantite) }}
+                </div>
+
+            {% endif %} </td>
+    </tr> <tr>
+        <th style="color:#98b6b4">Categories:</th>
+        <td>{{ form_widget(form.nom_cat) }} </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>   {% if not form.nom_cat.vars.valid %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.nom_cat) }}
+                </div>
+
+            {% endif %} </td>
+    </tr>
+    <tr>
+        <th style="color:#98b6b4">image:</th>
+        <td>{{ form_widget(form.imageFile) }} </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>   {% if not form.imageFile.vars.valid %}
+                <div class="alert alert-danger">
+                    {{ form_errors(form.imageFile) }}
+                </div>
+
+            {% endif %} </td>
+    </tr>
+{#        <th style="color:#98b6b4">image:</th>#}
+
+{#        <td>  {{ form_widget(form.image) }} </td>#}
+
+{#    </tr>#}
+{#    <tr>#}
+{#        <td></td>#}
+{#        <td>  {{ form_errors(form.imageFile) }} </td>#}
+{#    </tr>#}
+{#    <tr>#}
+
+
+
+        {#<button class="btn"> {{ button_label|default('Envoyer') }}</button>#}
+</table>
+<button type="btn" class="btn btn-primary"> {{ button_label|default('Envoyer') }}</button>
+{{ form_end(form) }}
